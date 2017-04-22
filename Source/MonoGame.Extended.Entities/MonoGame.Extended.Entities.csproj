@@ -62,7 +62,7 @@
     <Compile Include="Entities\EntitySystemAttribute.cs" />
     <Compile Include="Entities\EntityTemplateAttribute.cs" />
     <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\EntityComponentSystemManager.cs" />
+    <Compile Include="Entities\EntityComponentSystem.cs" />
     <Compile Include="Entities\SystemManager.cs" />
     <Compile Include="Entities\EntityTemplate.cs" />
     <Compile Include="Entities\EntityComponent.cs" />

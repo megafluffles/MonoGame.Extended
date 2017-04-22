@@ -37,13 +37,13 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGame.Extended.Entities
 {
-    public sealed class EntityComponentSystemManager : DrawableGameComponent
+    public sealed class EntityComponentSystem : DrawableGameComponent
     {
         private readonly SystemManager _systemManager;
 
         public EntityManager EntityManager { get; }
 
-        public EntityComponentSystemManager(Game game)
+        public EntityComponentSystem(Game game)
             : base(game)
         {
             _systemManager = new SystemManager(this);
@@ -225,11 +225,11 @@ namespace MonoGame.Extended.Entities
 
                 var system = (EntitySystem)Activator.CreateInstance(typeInfo.AsType());
                 var processingSystem = system as EntityProcessingSystem;
+
                 if (processingSystem != null)
                     processingSystem.Aspect = new Aspect(andMask, orMask, norMask);
 
-                _systemManager.AddSystem(system, systemAttribute.GameLoopType,
-                    systemAttribute.Layer, SystemExecutionType.Synchronous);
+                _systemManager.AddSystem(system, systemAttribute.GameLoopType, systemAttribute.Layer, SystemExecutionType.Synchronous);
             }
         }
 

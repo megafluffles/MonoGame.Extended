@@ -22,7 +22,7 @@ namespace Demo.Platformer
         private Camera2D _camera;
         private TiledMap _map;
         private TiledMapRenderer _mapRenderer;
-        private EntityComponentSystemManager _ecs;
+        private EntityComponentSystem _ecs;
         private EntityFactory _entityFactory;
 
         public GameMain()
@@ -35,7 +35,7 @@ namespace Demo.Platformer
 
         protected override void Initialize()
         {
-            _ecs = new EntityComponentSystemManager(this);
+            _ecs = new EntityComponentSystem(this);
             Services.AddService(_ecs);
 
             _ecs.Scan(Assembly.GetExecutingAssembly());

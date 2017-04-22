@@ -19,7 +19,7 @@ namespace MonoGame.Extended.BitmapFonts
         public string Name { get; }
         public int LineHeight { get; }
         public int LetterSpacing { get; set; } = 0;
-        public static bool UseKernings { get; set; } = true;
+        public bool UseKernings { get; set; } = true;
 
         public BitmapFontRegion GetCharacterRegion(int character)
         {

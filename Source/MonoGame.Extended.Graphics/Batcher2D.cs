@@ -266,7 +266,7 @@ namespace MonoGame.Extended.Graphics
                 DrawSprite(textureRegion.Texture, ref transform1Matrix, ref bounds, color, flags, depth);
 
                 var advance = fontRegion.XAdvance + bitmapFont.LetterSpacing;
-                if (BitmapFont.UseKernings && lastGlyph != null)
+                if (bitmapFont.UseKernings && lastGlyph != null)
                 {
                     int amount;
                     if (lastGlyph.Kernings.TryGetValue(character, out amount))
@@ -396,7 +396,7 @@ namespace MonoGame.Extended.Graphics
                 DrawSprite(textureRegion.Texture, ref transform1Matrix, ref bounds, color, flags, depth);
 
                 var advance = fontRegion.XAdvance + bitmapFont.LetterSpacing;
-                if (BitmapFont.UseKernings && lastGlyph != null)
+                if (bitmapFont.UseKernings && lastGlyph != null)
                 {
                     int amount;
                     if (lastGlyph.Kernings.TryGetValue(character, out amount))

@@ -79,11 +79,6 @@ namespace Demo.StarWarrior.Systems
             if (keyboard.IsKeyDown(Keys.D) || keyboard.IsKeyDown(Keys.Right))
                 direction += Vector2.UnitX;
 
-            if (keyboard.IsKeyDown(Keys.K) && !_lastState.IsKeyDown(Keys.K))
-            {
-                BitmapFont.UseKernings = !BitmapFont.UseKernings;
-            }
-
             var isMoving = direction != Vector2.Zero;
             if (isMoving)
             {

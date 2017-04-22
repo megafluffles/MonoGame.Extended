@@ -10,6 +10,24 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\..\MonoGame.Extended.Content.Pipeline\bin\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin space-shooter-ext.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:space-shooter-ext.png
+
+#begin space-shooter-ext-atlas.json
+/importer:TexturePackerJsonImporter
+/processor:TexturePackerProcessor
+/build:space-shooter-ext-atlas.json
 
