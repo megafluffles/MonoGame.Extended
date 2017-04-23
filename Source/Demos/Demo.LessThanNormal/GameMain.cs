@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
+using MonoGame.Extended.Serialization;
 using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.ViewportAdapters;
 
@@ -14,7 +15,6 @@ namespace Demo.LessThanNormal
         // ReSharper disable once NotAccessedField.Local
         private GraphicsDeviceManager _graphicsDeviceManager;
         private ViewportAdapter _viewportAdapter;
-        private Camera2D _camera;
 
         private const int _virtualWidth = 1024;
         private const int _virtualHeight = 768;
@@ -44,11 +44,12 @@ namespace Demo.LessThanNormal
         protected override void LoadContent()
         {
             _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, _virtualWidth, _virtualHeight);
-            _camera = new Camera2D(_viewportAdapter) {Zoom = 0.5f};
-            _camera.LookAt(Vector2.Zero);
+            var camera = new Camera2D(_viewportAdapter) {Zoom = 0.5f};
+            camera.LookAt(Vector2.Zero);
+            Services.AddService(camera);
 
-            EntityTemplateServiceTemp.TextureAtlas = Content.Load<TextureAtlas>("space-shooter-ext-atlas");
-            EntityTemplateServiceTemp.Camera = _camera;
+            var textureAtlas = Content.Load<TextureAtlas>("space-shooter-ext-atlas");
+            Services.AddService<ITextureRegionService>(new TextureRegionService(textureAtlas));
 
             _entityComponentSystem.Initialize();
 

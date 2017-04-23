@@ -40,6 +40,7 @@ using System.Text;
 using Demo.StarWarrior.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Entities;
 
@@ -55,8 +56,8 @@ namespace Demo.StarWarrior.Systems
 
         public override void LoadContent()
         {
-            _spriteBatch = Game.Services.GetService<SpriteBatch>();
-            _font = Game.Services.GetService<BitmapFont>();
+            _spriteBatch = Services.GetService<SpriteBatch>();
+            _font = Services.GetService<BitmapFont>();
         }
 
         protected override void Process(GameTime gameTime, Entity entity)

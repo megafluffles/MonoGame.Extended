@@ -45,8 +45,9 @@ namespace MonoGame.Extended.Entities
         private TimeSpan _timer;
 
         internal EntityComponentSystem Manager;
+
         public bool IsEnabled { get; set; }
-        public Game Game => Manager.Game;
+        public IServiceProvider Services => Manager.Game.Services;
         public GraphicsDevice GraphicsDevice => Manager.GraphicsDevice;
         public EntityManager EntityManager => Manager.EntityManager;
 
@@ -58,17 +59,13 @@ namespace MonoGame.Extended.Entities
             _timer = TimeSpan.Zero;
         }
 
-        public virtual void Initialize()
-        {
-        }
+        public virtual void Initialize() { }
+        public virtual void LoadContent() { }
+        public virtual void UnloadContent() { }
 
-        public virtual void LoadContent()
-        {
-        }
-
-        public virtual void UnloadContent()
-        {
-        }
+        protected virtual void Begin(GameTime gameTime) { }
+        protected virtual void Process(GameTime gameTime) { }
+        protected virtual void End(GameTime gameTime) { }
 
         internal void ProcessInternal(GameTime gameTime)
         {
@@ -83,30 +80,21 @@ namespace MonoGame.Extended.Entities
         {
             IsEnabled = !IsEnabled;
         }
-
-        protected virtual void Begin(GameTime gameTime)
-        {
-        }
-
+        
         protected virtual bool CheckProcessing(GameTime gameTime)
         {
             // ReSharper disable once InvertIf
             if (ProcessingDelay != TimeSpan.Zero)
             {
                 _timer += gameTime.ElapsedGameTime;
+
                 if (_timer <= ProcessingDelay)
                     return false;
+
                 _timer -= ProcessingDelay;
             }
+
             return IsEnabled;
-        }
-
-        protected virtual void Process(GameTime gameTime)
-        {
-        }
-
-        protected virtual void End(GameTime gameTime)
-        {
         }
     }
 }

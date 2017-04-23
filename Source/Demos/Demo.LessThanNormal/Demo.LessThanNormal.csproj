@@ -54,6 +54,7 @@
     <Compile Include="Systems\PhysicsSystem.cs" />
     <Compile Include="Systems\ShipControlSystem.cs" />
     <Compile Include="Systems\RenderSystem.cs" />
+    <Compile Include="TextureRegionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

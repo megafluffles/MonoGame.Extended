@@ -1,7 +1,7 @@
 ﻿using Demo.LessThanNormal.Components;
-using Demo.LessThanNormal.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.TextureAtlases;
 
@@ -11,6 +11,7 @@ namespace Demo.LessThanNormal.Systems
     [EntitySystem(GameLoopType.Draw, Layer = 0)]
     public class RenderSystem : EntityProcessingSystem
     {
+        private Camera2D _camera;
         private SpriteBatch _spriteBatch;
 
         public RenderSystem()
@@ -19,20 +20,17 @@ namespace Demo.LessThanNormal.Systems
 
         public override void Initialize()
         {
-            base.Initialize();
+            _camera = Services.GetService<Camera2D>();
             _spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         protected override void Begin(GameTime gameTime)
         {
-            base.Begin(gameTime);
-            _spriteBatch.Begin(blendState: BlendState.NonPremultiplied, transformMatrix: EntityTemplateServiceTemp.Camera.GetViewMatrix());
+            _spriteBatch.Begin(blendState: BlendState.NonPremultiplied, transformMatrix: _camera.GetViewMatrix());
         }
 
         protected override void Process(GameTime gameTime, Entity entity)
         {
-            base.Process(gameTime, entity);
-
             var transform = entity.Get<TransformComponent>();
             var sprite = entity.Get<SpriteComponent>();
 
@@ -42,7 +40,6 @@ namespace Demo.LessThanNormal.Systems
         protected override void End(GameTime gameTime)
         {
             _spriteBatch.End();
-            base.End(gameTime);
         }
     }
 }

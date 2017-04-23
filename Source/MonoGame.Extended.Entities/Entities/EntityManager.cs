@@ -38,12 +38,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using Microsoft.Xna.Framework;
 using MonoGame.Extended.Collections;
 
 namespace MonoGame.Extended.Entities
 {
     public class EntityManager
     {
+        private readonly IServiceProvider _services;
         private readonly SystemManager _systemManager;
         private readonly ObjectPool<Entity> _pool;
         private readonly Dictionary<string, Entity> _entitiesByName;
@@ -65,8 +67,9 @@ namespace MonoGame.Extended.Entities
         public event EntityDelegate EntityRemoved;
         public event EntityDelegate EntityDestroyed;
 
-        internal EntityManager(SystemManager systemManager)
+        internal EntityManager(IServiceProvider services, SystemManager systemManager)
         {
+            _services = services;
             _systemManager = systemManager;
 
             _pool = new ObjectPool<Entity>(CreateEntityObject, 100, ObjectPoolIsFullPolicy.IncreaseSize);
@@ -106,6 +109,7 @@ namespace MonoGame.Extended.Entities
 
             EntityTemplate entityTemplate;
             _entityTemplatesByName.TryGetValue(name, out entityTemplate);
+
             if (entityTemplate == null)
                 throw new InvalidOperationException($"EntityTemplate '{name}' is not registered.");
 

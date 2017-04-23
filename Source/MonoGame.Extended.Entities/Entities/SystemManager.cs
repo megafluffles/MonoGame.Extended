@@ -57,7 +57,7 @@ namespace MonoGame.Extended.Entities
 
     internal sealed class SystemManager
     {
-        private readonly EntityComponentSystem _manager;
+        private readonly EntityComponentSystem _entityComponentSystem;
         private SystemLayer[] _updateLayers;
         private SystemLayer[] _drawLayers;
         private readonly SystemLayer _dummyLayer;
@@ -66,12 +66,13 @@ namespace MonoGame.Extended.Entities
         internal List<EntitySystem> Systems;
         internal List<EntityProcessingSystem> ProcessingSystems;
 
-        internal SystemManager(EntityComponentSystem manager)
+        internal SystemManager(EntityComponentSystem entityComponentSystem)
         {
-            _manager = manager;
+            _entityComponentSystem = entityComponentSystem;
             _updateLayers = new SystemLayer[0];
             _drawLayers = new SystemLayer[0];
             _dummyLayer  = new SystemLayer();
+
             Systems = new List<EntitySystem>();
             ProcessingSystems = new List<EntityProcessingSystem>();
         }
@@ -147,7 +148,7 @@ namespace MonoGame.Extended.Entities
             if (Systems.Contains(system))
                 throw new InvalidOperationException($"System '{systemType}' has already been added.");
 
-            system.Manager = _manager;
+            system.Manager = _entityComponentSystem;
 
             Systems.Add(system);
 

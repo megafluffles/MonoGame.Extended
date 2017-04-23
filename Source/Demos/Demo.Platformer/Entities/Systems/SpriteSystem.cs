@@ -26,8 +26,8 @@ namespace Demo.Platformer.Entities.Systems
         {
             base.Initialize();
 
-            _camera = Game.Services.GetService<Camera2D>();
-            _spriteBatch = Game.Services.GetService<SpriteBatch>();
+            _camera = Services.GetService<Camera2D>();
+            _spriteBatch = Services.GetService<SpriteBatch>();
         }
 
         public override void LoadContent()

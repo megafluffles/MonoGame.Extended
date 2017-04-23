@@ -40,14 +40,17 @@ namespace MonoGame.Extended.Entities
     public sealed class EntityComponentSystem : DrawableGameComponent
     {
         private readonly SystemManager _systemManager;
+        private IServiceProvider _services;
 
         public EntityManager EntityManager { get; }
 
         public EntityComponentSystem(Game game)
             : base(game)
         {
+            _services = game.Services;
             _systemManager = new SystemManager(this);
-            EntityManager = new EntityManager(_systemManager);
+
+            EntityManager = new EntityManager(game.Services, _systemManager);
         }
 
         // don't call this every frame, lol
@@ -168,7 +171,10 @@ namespace MonoGame.Extended.Entities
                 if (entityTemplateAttribute == null)
                     return;
 
-                var entityTemplate = (EntityTemplate)Activator.CreateInstance(typeInfo.AsType());
+                var type = typeInfo.AsType();
+                var entityTemplate = (EntityTemplate) Activator.CreateInstance(type);
+
+                entityTemplate.Services = _services;
                 EntityManager.AddEntityTemplate(entityTemplateAttribute.Name, entityTemplate);
             }
         }
@@ -223,7 +229,8 @@ namespace MonoGame.Extended.Entities
                 if (systemAttribute == null)
                     return;
 
-                var system = (EntitySystem)Activator.CreateInstance(typeInfo.AsType());
+                var type = typeInfo.AsType();
+                var system = (EntitySystem)Activator.CreateInstance(type);
                 var processingSystem = system as EntityProcessingSystem;
 
                 if (processingSystem != null)

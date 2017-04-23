@@ -34,11 +34,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace MonoGame.Extended.Entities
 {
     public abstract class EntityTemplate
     {
-        protected internal EntityComponentSystem Manager { get; internal set; }
+        public IServiceProvider Services { get; internal set; }
 
         protected internal virtual void Initialize()
         {

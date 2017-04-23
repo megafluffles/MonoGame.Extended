@@ -70,21 +70,11 @@ namespace MonoGame.Extended.Entities
                 Remove(entity);
             }
         }
-        public virtual void OnEntityAdded(Entity entity)
-        {
-        }
 
-        public virtual void OnEntityDisabled(Entity entity)
-        {
-        }
-
-        public virtual void OnEntityEnabled(Entity entity)
-        {
-        }
-
-        public virtual void OnEntityRemoved(Entity entity)
-        {
-        }
+        public virtual void OnEntityAdded(Entity entity) { }
+        public virtual void OnEntityDisabled(Entity entity) { }
+        public virtual void OnEntityEnabled(Entity entity) { }
+        public virtual void OnEntityRemoved(Entity entity) { }
 
         protected override void Process(GameTime gameTime)
         {
@@ -97,9 +87,7 @@ namespace MonoGame.Extended.Entities
             }
         }
 
-        protected virtual void Process(GameTime gameTime, Entity entity)
-        {
-        }
+        protected virtual void Process(GameTime gameTime, Entity entity) { }
 
         protected bool IsInterestedIn(Entity entity)
         {

@@ -44,6 +44,7 @@
     <Compile Include="IRectangular.cs" />
     <Compile Include="Serialization\NinePatchRegion2DJsonConverter.cs" />
     <Compile Include="Serialization\ThicknessJsonConverter.cs" />
+    <Compile Include="ServiceProviderExtensions.cs" />
     <Compile Include="Sprites\ISpriteBatchDrawable.cs" />
     <Compile Include="Thickness.cs" />
     <Compile Include="BoundingRectangle.cs" />
