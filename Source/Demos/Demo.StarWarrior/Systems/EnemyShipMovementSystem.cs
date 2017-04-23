@@ -37,6 +37,7 @@
 using Demo.StarWarrior.Components;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
+using MonoGame.Extended.Entities.Components;
 
 namespace Demo.StarWarrior.Systems
 {

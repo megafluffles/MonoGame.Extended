@@ -42,6 +42,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Entities;
+using MonoGame.Extended.Entities.Components;
 
 namespace Demo.StarWarrior.Systems
 {

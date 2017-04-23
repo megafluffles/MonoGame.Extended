@@ -37,6 +37,8 @@
 using System;
 using System.Runtime.CompilerServices;
 using MonoGame.Extended.Collections;
+using MonoGame.Extended.Entities.Components;
+
 // ReSharper disable InconsistentNaming
 
 namespace MonoGame.Extended.Entities

@@ -1,13 +1,14 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace MonoGame.Extended.Entities
+namespace MonoGame.Extended.Entities.Components
 {
-    public class TransformComponent2D : EntityComponent
+    [EntityComponent]
+    public class TransformComponent : EntityComponent
     {
         private TransformFlags _flags = TransformFlags.All; // dirty flags, set all dirty flags when created
         private Matrix2D _localMatrix; // model space to local space
-        private TransformComponent2D _parent; // parent
+        private TransformComponent _parent; // parent
         private Matrix2D _worldMatrix; // local space to world space
         private Vector2 _position;
         private float _rotation;
@@ -68,7 +69,7 @@ namespace MonoGame.Extended.Entities
             }
         }
 
-        public TransformComponent2D Parent
+        public TransformComponent Parent
         {
             get { return _parent; }
             set
@@ -118,7 +119,7 @@ namespace MonoGame.Extended.Entities
             TransformBecameDirty?.Invoke();
         }
 
-        private void OnParentChanged(TransformComponent2D oldParent, TransformComponent2D newParent)
+        private void OnParentChanged(TransformComponent oldParent, TransformComponent newParent)
         {
             var parent = oldParent;
             while (parent != null)

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
+using MonoGame.Extended.Entities.Components;
 using MonoGame.Extended.TextureAtlases;
 
 namespace Demo.LessThanNormal.Systems

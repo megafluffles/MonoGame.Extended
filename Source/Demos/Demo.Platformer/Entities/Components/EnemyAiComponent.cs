@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
+using MonoGame.Extended.Entities.Components;
 
 namespace Demo.Platformer.Entities.Components
 {

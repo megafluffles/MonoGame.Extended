@@ -4,6 +4,7 @@ using Demo.Platformer.Entities.Components;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Animations.SpriteSheets;
 using MonoGame.Extended.Entities;
+using TransformComponent = Demo.Platformer.Entities.Components.TransformComponent;
 
 namespace Demo.Platformer.Entities.Templates
 {

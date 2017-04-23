@@ -34,19 +34,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended.Entities.Components;
 
 namespace MonoGame.Extended.Entities
 {
     public sealed class EntityComponentSystem : DrawableGameComponent
     {
         private readonly SystemManager _systemManager;
-        private IServiceProvider _services;
+        private readonly IServiceProvider _services;
 
         public EntityManager EntityManager { get; }
 
         public EntityComponentSystem(Game game)
             : base(game)
         {
+            game.Services.AddService(this);
             _services = game.Services;
             _systemManager = new SystemManager(this);
 
@@ -64,7 +66,7 @@ namespace MonoGame.Extended.Entities
             var systemTypeInfo = typeof(EntitySystem).GetTypeInfo();
             var entityTempalteTypeInfo = typeof(EntityTemplate).GetTypeInfo();
 
-            foreach (var assembly in assemblies)
+            foreach (var assembly in assemblies.Concat(new[] {typeof(EntityComponentSystem).GetTypeInfo().Assembly}))
             {
                 var typeInfos = assembly.ExportedTypes.Select(x => x.GetTypeInfo()).ToArray();
 

@@ -2,6 +2,7 @@ using Demo.LessThanNormal.Components;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
+using MonoGame.Extended.Entities.Components;
 
 namespace Demo.LessThanNormal.Systems
 {

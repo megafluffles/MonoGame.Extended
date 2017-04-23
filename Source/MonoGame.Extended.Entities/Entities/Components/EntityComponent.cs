@@ -36,7 +36,7 @@
 
 using MonoGame.Extended.Collections;
 
-namespace MonoGame.Extended.Entities
+namespace MonoGame.Extended.Entities.Components
 {
     public abstract class EntityComponent : IPoolable
     {

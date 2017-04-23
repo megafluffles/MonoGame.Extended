@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Entities;
+using MonoGame.Extended.Entities.Components;
 
 namespace Demo.StarWarrior
 {
@@ -48,7 +49,6 @@ namespace Demo.StarWarrior
             _ecs.Scan(Assembly.GetExecutingAssembly());
 
             Services.AddService(Content);
-            Services.AddService(_ecs);
             Services.AddService(_random);
         }
 

@@ -5,6 +5,7 @@ using Demo.Platformer.Entities.Components;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
+using TransformComponent = Demo.Platformer.Entities.Components.TransformComponent;
 
 namespace Demo.Platformer.Entities.Systems
 {

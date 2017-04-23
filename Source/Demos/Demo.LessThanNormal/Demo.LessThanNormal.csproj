@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Components\ShipComponent.cs" />
     <Compile Include="Components\SpriteComponent.cs" />
-    <Compile Include="Components\TransformComponent.cs" />
     <Compile Include="Components\BodyComponent.cs" />
     <Compile Include="Entities\Missile.cs" />
     <Compile Include="Entities\PlayerShip.cs" />

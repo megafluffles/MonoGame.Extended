@@ -40,6 +40,7 @@ using System.Diagnostics;
 using System.Reflection;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Collections;
+using MonoGame.Extended.Entities.Components;
 
 namespace MonoGame.Extended.Entities
 {

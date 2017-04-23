@@ -37,8 +37,6 @@ namespace Demo.LessThanNormal
 
             // scan for components and systems in provided assemblies
             _entityComponentSystem.Scan(Assembly.GetExecutingAssembly());
-
-            Services.AddService(_entityComponentSystem);
         }
 
         protected override void LoadContent()
