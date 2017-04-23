@@ -4,17 +4,17 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Components;
-using MonoGame.Extended.TextureAtlases;
+using MonoGame.Extended.Particles;
 
 namespace Demo.LessThanNormal.Systems
 {
-    [Aspect(AspectType.All, typeof(SpriteComponent), typeof(TransformComponent))]
+    [Aspect(AspectType.All, typeof(ParticleEffectComponent), typeof(TransformComponent))]
     [EntitySystem(GameLoopType.Draw, Layer = 0)]
-    public class RenderSystem : EntityProcessingSystem
+    public class ParticleEffectSystem : EntityProcessingSystem
     {
         private Camera2D _camera;
         private SpriteBatch _spriteBatch;
-
+        
         public override void Initialize()
         {
             _camera = Services.GetService<Camera2D>();
@@ -28,10 +28,15 @@ namespace Demo.LessThanNormal.Systems
 
         protected override void Process(GameTime gameTime, Entity entity)
         {
+            var deltaTime = gameTime.GetElapsedSeconds();
             var transform = entity.Get<TransformComponent>();
-            var sprite = entity.Get<SpriteComponent>();
+            var component = entity.Get<ParticleEffectComponent>();
 
-            _spriteBatch.Draw(sprite.TextureRegion, transform.Position, sprite.Color, transform.Rotation, sprite.Origin, transform.Scale, sprite.Effect, layerDepth: 0);
+            if (component.Trigger)
+                component.Effect.Trigger(transform.Position);
+
+            component.Effect.Update(deltaTime);
+            _spriteBatch.Draw(component.Effect);
         }
 
         protected override void End(GameTime gameTime)

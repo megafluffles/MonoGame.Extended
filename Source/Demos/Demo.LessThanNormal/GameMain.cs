@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Demo.LessThanNormal.Entities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
@@ -41,6 +42,8 @@ namespace Demo.LessThanNormal
 
         protected override void LoadContent()
         {
+            Services.AddService(new SpriteBatch(GraphicsDevice));
+
             _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, _virtualWidth, _virtualHeight);
             var camera = new Camera2D(_viewportAdapter) {Zoom = 0.5f};
             camera.LookAt(Vector2.Zero);

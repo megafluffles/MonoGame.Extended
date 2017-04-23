@@ -10,16 +10,6 @@ namespace Demo.LessThanNormal.Components
     [EntityComponent]
     public class SpriteComponent : EntityComponent, ISprite
     {
-        public SpriteComponent()
-            : this(null)
-        {
-        }
-
-        public SpriteComponent(TextureRegion2D region)
-        {
-            TextureRegion = region;
-        }
-
         public TextureRegion2D TextureRegion { get; set; }
         public bool IsVisible { get; set; } = true;
         public Color Color { get; set; } = Color.White;

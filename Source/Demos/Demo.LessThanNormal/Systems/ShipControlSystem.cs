@@ -8,11 +8,12 @@ using MonoGame.Extended.Entities.Components;
 
 namespace Demo.LessThanNormal.Systems
 {
-    [Aspect(AspectType.All, typeof(ShipComponent), typeof(TransformComponent), typeof(BodyComponent))]
+    [Aspect(AspectType.All, typeof(ShipComponent), typeof(TransformComponent), typeof(BodyComponent), typeof(ParticleEffectComponent))]
     [EntitySystem(GameLoopType.Update, Layer = 0)]
     public class ShipControlSystem : EntityProcessingSystem
     {
         private KeyboardState _previousKeyboardState;
+        private float _fireDelay;
 
         public ShipControlSystem()
         {
@@ -24,6 +25,7 @@ namespace Demo.LessThanNormal.Systems
             var transform = entity.Get<TransformComponent>();
             var body = entity.Get<BodyComponent>();
             var ship = entity.Get<ShipComponent>();
+            var particle = entity.Get<ParticleEffectComponent>();
             var acceleration = Vector2.Zero;
 
             var keyboardState = Keyboard.GetState();
@@ -56,24 +58,33 @@ namespace Demo.LessThanNormal.Systems
                 transform.Rotation += deltaTime * ship.AngularAcceleration;
             }
 
-            if (keyboardState.IsKeyDown(Keys.Space) && !_previousKeyboardState.IsKeyDown(Keys.Space))
-                FireMissile(transform, body, direction);
+            if (keyboardState.IsKeyDown(Keys.Space) && _fireDelay <= 0)
+            {
+                FireMissile(transform, body, direction, new Vector2(25, -40));
+                FireMissile(transform, body, direction, new Vector2(-25, -40));
+                _fireDelay = 0.2f;
+            }
+
+            particle.Trigger = ship.LeftThrust > 0 || ship.RightThrust > 0;
 
             acceleration += direction * ship.LeftThrust + direction * ship.RightThrust;
             body.Velocity += acceleration;
 
             _previousKeyboardState = keyboardState;
+
+            if (_fireDelay > 0)
+                _fireDelay -= deltaTime;
         }
 
-        private void FireMissile(TransformComponent transform, BodyComponent body, Vector2 direction)
+        private void FireMissile(TransformComponent transform, BodyComponent body, Vector2 direction, Vector2 offset)
         {
             var missile = EntityManager.CreateEntityFromTemplate(nameof(Missile));
             var missileTransform = missile.Get<TransformComponent>();
             var missileBody = missile.Get<BodyComponent>();
 
-            missileTransform.Position = transform.Position;
-            missileTransform.Rotation = transform.Rotation;
-            missileBody.Velocity = body.Velocity + direction * 800;
+            missileTransform.Rotation = transform.Rotation + MathHelper.Pi;
+            missileTransform.Position = transform.Position + offset.Rotate(missileTransform.Rotation);
+            missileBody.Velocity = body.Velocity + direction * 600;
         }
     }
 }
