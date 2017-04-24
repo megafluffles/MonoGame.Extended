@@ -6,8 +6,6 @@ using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Components;
 using MonoGame.Extended.Particles;
 using MonoGame.Extended.Particles.Modifiers;
-using MonoGame.Extended.Particles.Modifiers.Containers;
-using MonoGame.Extended.Particles.Modifiers.Interpolators;
 using MonoGame.Extended.Particles.Profiles;
 using MonoGame.Extended.Serialization;
 
