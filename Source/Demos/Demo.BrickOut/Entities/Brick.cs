@@ -7,18 +7,21 @@ using MonoGame.Extended.Serialization;
 
 namespace Demo.BrickOut.Entities
 {
-    [EntityTemplate(nameof(Paddle))]
-    public class Paddle : EntityTemplate
+    [EntityTemplate(nameof(Brick))]
+    public class Brick : EntityTemplate
     {
         protected override void Build(Entity entity)
         {
             var textureRegionService = Services.GetService<ITextureRegionService>();
-            var textureRegion = textureRegionService.GetTextureRegion("paddle_05");
+            var textureRegion = textureRegionService.GetTextureRegion("tileBlack_38");
 
-            entity.Group = EntityGroup.Paddles;
-            entity.Attach<PaddleComponent>();
-            entity.Attach<TransformComponent>(c => c.Position = new Vector2(GameMain.VirtualWidth / 2f, GameMain.VirtualHeight - 50));
-            entity.Attach<BodyComponent>(c => c.Size = textureRegion.Bounds.Size);
+            entity.Group = EntityGroup.Bricks;
+
+            entity.Attach<TransformComponent>();
+            entity.Attach<BodyComponent>(c =>
+            {
+                c.Size = textureRegion.Bounds.Size;
+            });
             entity.Attach<SpriteComponent>(c =>
             {
                 c.TextureRegion = textureRegion;

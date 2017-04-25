@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Demo.BrickOut.Components;
 using Demo.BrickOut.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,8 +19,8 @@ namespace Demo.BrickOut
         private GraphicsDeviceManager _graphicsDeviceManager;
         private ViewportAdapter _viewportAdapter;
 
-        public const int VirtualWidth = 1024;
-        public const int VirtualHeight = 768;
+        public const int VirtualWidth = 1040;
+        public const int VirtualHeight = 800;
 
         private readonly EntityComponentSystem _entityComponentSystem;
         private readonly EntityManager _entityManager;
@@ -56,6 +57,25 @@ namespace Demo.BrickOut
 
             _entityManager.CreateEntityFromTemplate(nameof(Ball));
             _entityManager.CreateEntityFromTemplate(nameof(Paddle));
+
+            LayoutBricks();
+        }
+
+        private void LayoutBricks()
+        {
+            for (var x = 0; x < 20; x++)
+            {
+                for (var y = 0; y < 12; y++)
+                {
+                    var brick = _entityManager.CreateEntityFromTemplate(nameof(Brick));
+                    var transform = brick.Get<TransformComponent>();
+                    var sprite = brick.Get<SpriteComponent>();
+
+                    var px = sprite.TextureRegion.Width / 2f + x * sprite.TextureRegion.Width;
+                    var py = sprite.TextureRegion.Height / 2f + y * sprite.TextureRegion.Height;
+                    transform.Position = new Vector2(px, py);
+                }
+            }
         }
 
         protected override void Update(GameTime gameTime)

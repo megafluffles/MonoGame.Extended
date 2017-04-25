@@ -15,7 +15,11 @@ namespace Demo.BrickOut.Entities
             var textureRegionService = Services.GetService<ITextureRegionService>();
             var textureRegion = textureRegionService.GetTextureRegion("ballBlue_10");
 
-            entity.Attach<TransformComponent>(c => c.Position = new Vector2(200, 200));
+            entity.Group = EntityGroup.Balls;
+            entity.Attach<TransformComponent>(c =>
+            {
+                c.Position = new Vector2(200, 200);
+            });
             entity.Attach<BodyComponent>(c =>
             {
                 c.Size = textureRegion.Bounds.Size;
