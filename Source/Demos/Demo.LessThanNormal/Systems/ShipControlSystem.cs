@@ -1,3 +1,4 @@
+using System;
 using Demo.LessThanNormal.Components;
 using Demo.LessThanNormal.Entities;
 using Microsoft.Xna.Framework;
@@ -12,13 +13,13 @@ namespace Demo.LessThanNormal.Systems
     [EntitySystem(GameLoopType.Update, Layer = 0)]
     public class ShipControlSystem : EntityProcessingSystem
     {
-        private KeyboardState _previousKeyboardState;
         private float _fireDelay;
 
         public ShipControlSystem()
         {
         }
 
+        
         protected override void Process(GameTime gameTime, Entity entity)
         {
             var deltaTime = gameTime.GetElapsedSeconds();
@@ -27,6 +28,22 @@ namespace Demo.LessThanNormal.Systems
             var ship = entity.Get<ShipComponent>();
             var particle = entity.Get<ParticleEffectComponent>();
             var acceleration = Vector2.Zero;
+
+            var mouseState = Mouse.GetState();
+            var mx = mouseState.X - GameMain.VirtualWidth / 2;
+            var my = mouseState.Y - GameMain.VirtualHeight / 2;
+
+            var d = new Vector2(mx, my);
+            
+            if (d != Vector2.Zero)
+            {
+                var dd = d;
+                transform.Position += dd;
+                transform.Rotation = (dd * 100).ToAngle();
+            }
+
+            Mouse.SetPosition(GameMain.VirtualWidth / 2, GameMain.VirtualHeight / 2);
+
 
             var keyboardState = Keyboard.GetState();
             var direction = Vector2.UnitY.Rotate(transform.Rotation).NormalizedCopy();
@@ -69,8 +86,6 @@ namespace Demo.LessThanNormal.Systems
 
             acceleration += direction * ship.LeftThrust + direction * ship.RightThrust;
             body.Velocity += acceleration;
-
-            _previousKeyboardState = keyboardState;
 
             if (_fireDelay > 0)
                 _fireDelay -= deltaTime;

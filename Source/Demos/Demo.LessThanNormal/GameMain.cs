@@ -17,8 +17,8 @@ namespace Demo.LessThanNormal
         private GraphicsDeviceManager _graphicsDeviceManager;
         private ViewportAdapter _viewportAdapter;
 
-        private const int _virtualWidth = 1024;
-        private const int _virtualHeight = 768;
+        public const int VirtualWidth = 1024;
+        public const int VirtualHeight = 768;
 
         private readonly EntityComponentSystem _entityComponentSystem;
         private readonly EntityManager _entityManager;
@@ -27,11 +27,11 @@ namespace Demo.LessThanNormal
         {
             _graphicsDeviceManager = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferWidth = _virtualWidth,
-                PreferredBackBufferHeight = _virtualHeight
+                PreferredBackBufferWidth = VirtualWidth,
+                PreferredBackBufferHeight = VirtualHeight
             };
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
 
             _entityComponentSystem = new EntityComponentSystem(this);
             _entityManager = _entityComponentSystem.EntityManager;
@@ -40,11 +40,18 @@ namespace Demo.LessThanNormal
             _entityComponentSystem.Scan(Assembly.GetExecutingAssembly());
         }
 
+        protected override void Initialize()
+        {
+            base.Initialize();
+
+            Mouse.SetPosition(VirtualWidth / 2, VirtualHeight / 2);
+        }
+
         protected override void LoadContent()
         {
             Services.AddService(new SpriteBatch(GraphicsDevice));
 
-            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, _virtualWidth, _virtualHeight);
+            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, VirtualWidth, VirtualHeight);
             var camera = new Camera2D(_viewportAdapter) {Zoom = 0.5f};
             camera.LookAt(Vector2.Zero);
             Services.AddService(camera);
