@@ -42,8 +42,8 @@ namespace MonoGame.Extended.Entities
     public abstract class EntityProcessingSystem : EntitySystem
     {
         private readonly Dictionary<Entity, int> _activeEntitiesLookup = new Dictionary<Entity, int>();
-        // ReSharper disable once InconsistentNaming
-        internal readonly List<Entity> _activeEntities = new List<Entity>();
+        private readonly List<Entity> _activeEntities = new List<Entity>();
+
         internal int BitIndex;
         internal Aspect Aspect;
 
@@ -56,6 +56,7 @@ namespace MonoGame.Extended.Entities
         internal virtual void RefreshEntityComponents(Entity entity)
         {
             var isInterested = Aspect.Matches(entity.ComponentBits);
+
             if (!isInterested)
                 return;
 
@@ -70,6 +71,7 @@ namespace MonoGame.Extended.Entities
                 Remove(entity);
             }
         }
+
         public virtual void OnEntityAdded(Entity entity)
         {
         }

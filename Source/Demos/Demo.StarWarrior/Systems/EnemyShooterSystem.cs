@@ -39,6 +39,7 @@ using Demo.StarWarrior.Components;
 using Demo.StarWarrior.Templates;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
+using TransformComponent = Demo.StarWarrior.Components.TransformComponent;
 
 namespace Demo.StarWarrior.Systems
 {

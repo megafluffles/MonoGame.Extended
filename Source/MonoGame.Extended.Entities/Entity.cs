@@ -138,6 +138,11 @@ namespace MonoGame.Extended.Entities
             return Manager.AddComponent<T>(this);
         }
 
+        public EntityComponent Attach(Type componentType)
+        {
+            return Manager.AddComponent(this, componentType);
+        }
+
         public void Detach<T>() where T : EntityComponent
         {
             Manager.MarkComponentToBeRemoved<T>(this);

@@ -41,6 +41,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Entities;
+using TransformComponent = Demo.StarWarrior.Components.TransformComponent;
 
 namespace Demo.StarWarrior.Systems
 {
@@ -53,8 +54,8 @@ namespace Demo.StarWarrior.Systems
 
         public override void LoadContent()
         {
-            _spriteBatch = Game.Services.GetService<SpriteBatch>();
-            _contentManager = Game.Services.GetService<ContentManager>();
+            _spriteBatch = Services.GetService<SpriteBatch>();
+            _contentManager = Services.GetService<ContentManager>();
         }
 
         protected override void Process(GameTime gameTime, Entity entity)

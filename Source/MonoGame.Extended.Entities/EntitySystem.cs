@@ -46,7 +46,8 @@ namespace MonoGame.Extended.Entities
 
         internal EntityComponentSystemManager Manager;
         public bool IsEnabled { get; set; }
-        public Game Game => Manager.Game;
+        //public Game Game => Manager.Game;
+        public IServiceProvider Services => Manager.Game.Services;
         public GraphicsDevice GraphicsDevice => Manager.GraphicsDevice;
         public EntityManager EntityManager => Manager.EntityManager;
 

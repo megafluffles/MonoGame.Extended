@@ -280,12 +280,15 @@ namespace MonoGame.Extended.Entities
             EntityRemoved?.Invoke(entity);
         }
 
-        internal T AddComponent<T>(Entity entity) where T : EntityComponent
+        internal EntityComponent AddComponent(Entity entity, Type componentType)
         {
             Debug.Assert(entity != null);
+            return AddComponent(entity, GetComponentTypeFrom(componentType));
+        }
 
-            var componentType = GetComponentTypeFrom(typeof(T));
-            return (T) AddComponent(entity, componentType);
+        internal T AddComponent<T>(Entity entity) where T : EntityComponent
+        {
+            return (T)AddComponent(entity, typeof(T));
         }
 
         internal EntityComponent AddComponent(Entity entity, EntityComponentType componentType)
@@ -295,16 +298,19 @@ namespace MonoGame.Extended.Entities
 
             if (componentType.Index >= _componentTypeEntitiesToComponents.Capacity)
                 _componentTypeEntitiesToComponents[componentType.Index] = null;
+
             var components = _componentTypeEntitiesToComponents[componentType.Index];
+
             if (components == null)
                 _componentTypeEntitiesToComponents[componentType.Index] = components = new Dictionary<Entity, EntityComponent>();
 
             EntityComponent component;
-
             IComponentPool componentPool;
+
             if (_componentPoolsByComponentTypeIndex.TryGetValue(componentType.Index, out componentPool))
             {
                 component = componentPool.New();
+
                 if (component == null)
                     return null;
             }

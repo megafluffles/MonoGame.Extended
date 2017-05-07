@@ -42,6 +42,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.BitmapFonts;
+using TransformComponent = Demo.StarWarrior.Components.TransformComponent;
 
 namespace Demo.StarWarrior.Systems
 {

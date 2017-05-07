@@ -61,7 +61,7 @@ namespace MonoGame.Extended.Entities
             var systemTypeInfo = typeof(EntitySystem).GetTypeInfo();
             var entityTempalteTypeInfo = typeof(EntityTemplate).GetTypeInfo();
 
-            foreach (var assembly in assemblies)
+            foreach (var assembly in assemblies.Concat(new [] { typeof(EntityComponentSystemManager).GetTypeInfo().Assembly }))
             {
                 var typeInfos = assembly.ExportedTypes.Select(x => x.GetTypeInfo()).ToArray();
 
