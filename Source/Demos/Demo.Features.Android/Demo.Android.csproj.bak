@@ -18,7 +18,7 @@
     <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <JavaMaximumHeapSize />
     <JavaOptions />
@@ -73,9 +73,9 @@
     <AndroidAsset Include="..\Demo.Features\Content\adventure-gui-skin.json">
       <Link>Assets\Raw\adventure-gui-skin.json</Link>
     </AndroidAsset>
-    <MonoGameContentReference Include="..\Demo.Features\Content\Content.mgcb">
+    <None Include="..\Demo.Features\Content\Content.mgcb">
       <Link>Content\Content.mgcb</Link>
-    </MonoGameContentReference>
+    </None>
     <AndroidAsset Include="..\Demo.Features\Content\title-screen.json">
       <Link>Assets\Raw\title-screen.json</Link>
     </AndroidAsset>
