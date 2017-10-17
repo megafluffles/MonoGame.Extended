@@ -11,7 +11,7 @@ namespace Demo.Features.Android
         , Theme = "@style/Theme.Splash"
         , AlwaysRetainTaskState = true
         , LaunchMode = LaunchMode.SingleInstance
-        , ScreenOrientation = ScreenOrientation.FullUser
+        , ScreenOrientation = ScreenOrientation.Landscape
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
     public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity
     {
@@ -19,7 +19,7 @@ namespace Demo.Features.Android
         {
             base.OnCreate(bundle);
 
-            var game = new GameMain(new PlatformConfig { IsFullScreen = true });
+            var game = new AndroidGameMain(new PlatformConfig { IsFullScreen = true });
             var view = (View)game.Services.GetService(typeof(View));
 
             HideSystemUi();

@@ -59,20 +59,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
+    <Compile Include="AndroidGameMain.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="..\Demos\Demo.Features\Content\Content.mgcb">
+    <MonoGameContentReference Include="..\Demo.Features\Content\Content.mgcb">
       <Link>Content\Content.mgcb</Link>
     </MonoGameContentReference>
-    <AndroidAsset Include="..\Demos\Demo.Features\Content\adventure-gui-skin.json">
-      <Link>Assets\Raw\adventure-gui-skin.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Demos\Demo.Features\Content\title-screen.json">
+    <AndroidAsset Include="..\Demo.Features\Content\title-screen.json">
       <Link>Assets\Raw\title-screen.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Demo.Features\Content\adventure-gui-skin.json">
+      <Link>Assets\Content\Raw\adventure-gui-skin.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidAsset>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -84,6 +85,7 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Content\Content\" />
     <Folder Include="Resources\Layout\" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +105,10 @@
     <ProjectReference Include="..\..\MonoGame.Extended\MonoGame.Extended.csproj">
       <Project>{41724c52-3d50-45bb-81eb-3c8a247eafd1}</Project>
       <Name>MonoGame.Extended</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Demo.Features\Demo.Features.csproj">
+      <Project>{d8c6d896-5abf-4823-84da-f1191beec004}</Project>
+      <Name>Demo.Features</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
